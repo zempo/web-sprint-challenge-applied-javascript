@@ -11,5 +11,52 @@ import axios from "axios";
 //
 // Use your function to create a header
 // and append it to the DOM inside the div.header-container
+const headerSlot = document.querySelector(".header-container");
 
-function Header() {}
+function makeHeader() {
+  // nodes
+  const nodes = {
+    header: document.createElement("header"),
+    heading: document.createElement("h1"),
+    date: document.createElement("span"),
+    temp: document.createElement("span"),
+  };
+
+  const currentDate = () => {
+    let dateObj = new Date();
+    var months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    let month = dateObj.getUTCMonth() + 1; //months from 1-12
+    let day = dateObj.getUTCDate();
+    let year = dateObj.getUTCFullYear();
+
+    return `${months[month].toUpperCase()} ${day}, ${year}`;
+  };
+
+  nodes.header.classList.add("header");
+  nodes.date.classList.add("date");
+  nodes.date.innerHTML = currentDate();
+  nodes.heading.innerHTML = "Lambda Times";
+  nodes.temp.classList.add("temp");
+  nodes.temp.innerHTML = "98°";
+
+  nodes.header.appendChild(nodes.date);
+  nodes.header.appendChild(nodes.heading);
+  nodes.header.appendChild(nodes.temp);
+
+  headerSlot.appendChild(nodes.header);
+}
+
+makeHeader();

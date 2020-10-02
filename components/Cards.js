@@ -38,10 +38,10 @@ axios
     });
   })
   .catch((err) => {
-    let status = err.response.status;
+    let status = err.response.status || "Uh Oh!";
     let statusHeader = document.createElement("h1");
     statusHeader.innerHTML = status;
-    let statusTxt = err.response.statusText;
+    let statusTxt = err.response.statusText || "Something went wrong";
     let statusBody = document.createElement("p");
     statusBody.innerHTML = statusTxt;
 
