@@ -35,11 +35,29 @@ axios
     console.log(err.response);
   });
 
+function filterArticles(e) {
+  let query = e.target.innerHTML || e.srcElement.innerHTML;
+
+  let currentArticles = document.querySelectorAll(".card");
+
+  currentArticles.forEach((article) => (article.style.display = "block"));
+
+  currentArticles.forEach((article) => {
+    if (article.classList[1] !== query.toLowerCase()) {
+      article.style.display = "none";
+    }
+    if (article.classList[1] === "node" && query.toLowerCase() === "node.js") {
+      article.style.display = "block";
+    }
+  });
+}
+
 function makeTab(topic) {
-  console.log(topic);
+  //   console.log(topic);
   let newTab = document.createElement("div");
   newTab.classList.add("tab");
   newTab.innerHTML = topic;
+  newTab.addEventListener("click", (e) => filterArticles(e));
 
   topicsSlot.appendChild(newTab);
 }
